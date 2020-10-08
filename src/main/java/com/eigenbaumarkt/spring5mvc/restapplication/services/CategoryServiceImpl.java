@@ -22,6 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDTO> getAllCategories() {
         return categoryRepository
                 .findAll()
+                // Java Streams & Methodenreferenzen: https://javabeginners.de/Arrays_und_Verwandtes/Streams.php
                 .stream()
                 .map(categoryMapper::categoryToCategoryDTO)
                 .collect(Collectors.toList());
