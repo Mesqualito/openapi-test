@@ -31,7 +31,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests! and gen code coverage
-      - run: mvn clean test jacocoTestReport
+      - run: mvn clean test
 
       - run:
           name: Save test results
