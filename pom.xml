@@ -15,7 +15,7 @@
     <description>Spring 5 MVC REST Application (or: Building an API with Spring5 MVC)</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>14</java.version>
     </properties>
 
     <dependencies>
