@@ -32,17 +32,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO getCustomerById(Long id) {
         return customerRepository.findById(id)
-                // TODO: replace like in "getAllCustomers()" in lambda ?
-                .map(customer -> {
-                    CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    // enhance Mapstruct auto CustomerDTO with URL:
-                    customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
-                    return customerDTO;
-                })
+                .map(this::mapCustomerUrl)
                 .orElseThrow(RuntimeException::new); // TODO: improve error handling, return 404-error with custom Exception "Customer not found"
     }
 
-    // EXTRA TODO: is it o.k. to use "this"-method in lambda?
     private CustomerDTO mapCustomerUrl(Customer customer) {
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
         customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
