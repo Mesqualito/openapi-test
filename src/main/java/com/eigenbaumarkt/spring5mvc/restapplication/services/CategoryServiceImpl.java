@@ -3,10 +3,12 @@ package com.eigenbaumarkt.spring5mvc.restapplication.services;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CategoryMapper;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     // "final": property can not change

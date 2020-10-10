@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CategoryListDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryDTO;
+import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryListDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
