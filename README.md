@@ -1,4 +1,4 @@
-# Spring Boot Recipe Application
+# Spring Framework 5 REST-Application - APIs with Spring MVC
 
 [![CircleCI](https://circleci.com/gh/Mesqualito/Spring5MVCRestApplication.svg?style=svg)](https://circleci.com/gh/Mesqualito/spring5mvcrestapplication)
 
