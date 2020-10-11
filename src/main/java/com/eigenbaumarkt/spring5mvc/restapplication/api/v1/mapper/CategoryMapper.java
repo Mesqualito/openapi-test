@@ -15,5 +15,4 @@ public interface CategoryMapper {
     // @Mapping(source = "one", target = "other")
     // [...]
     CategoryDTO categoryToCategoryDTO(Category category);
-
 }

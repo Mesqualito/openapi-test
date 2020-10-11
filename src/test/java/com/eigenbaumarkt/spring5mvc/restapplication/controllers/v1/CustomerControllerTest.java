@@ -1,6 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.ResourceNotFoundException;
 import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.RestResponseEntityExceptionHandler;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -163,5 +164,16 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         verify(customerService).deleteCustomerById(anyLong());
 
+    }
+
+
+    @Test
+    public void testNotFoundException() throws Exception {
+
+        when(customerService.getCustomerById(anyLong())).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(CustomerController.BASE_URL + "/666")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

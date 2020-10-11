@@ -38,12 +38,6 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
-    private CustomerDTO mapCustomerUrl(Customer customer) {
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-        customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
-        return customerDTO;
-    }
-
     /*
     @Override
     public CustomerDTO getCustomerByFirstNameAndLastName(String firstName, String lastName) {
@@ -73,8 +67,6 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO patchCustomerByDTO(Long id, CustomerDTO customerDTO) {
         return customerRepository.findById(id).map(customer -> {
 
-            // REST-method "PATCH": only do the necessary updates.
-            // if some value hasn't been changed, leave it:
             if(customerDTO.getFirstName() != null) {
                 customer.setFirstName(customerDTO.getFirstName());
             }
@@ -82,9 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.setLastName(customerDTO.getLastName());
             }
 
-            CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
-            returnDTO.setCustomerUrl(getCustomerUrl(id));
-            return returnDTO;
+            return saveAndReturnDTO(customer);
 
         }).orElseThrow(ResourceNotFoundException::new);
     }
@@ -108,5 +98,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     private String getCustomerUrl(long id) {
         return CustomerController.BASE_URL + "/" + id;
+    }
+
+    private CustomerDTO mapCustomerUrl(Customer customer) {
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
+        customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
+        return customerDTO;
     }
 }

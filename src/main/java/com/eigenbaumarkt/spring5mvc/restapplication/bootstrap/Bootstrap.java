@@ -2,8 +2,10 @@ package com.eigenbaumarkt.spring5mvc.restapplication.bootstrap;
 
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Category;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
+import com.eigenbaumarkt.spring5mvc.restapplication.domain.Vendor;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CategoryRepository;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
+import com.eigenbaumarkt.spring5mvc.restapplication.repositories.VendorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Component;
 public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
+    private VendorRepository vendorRepository;
     private CustomerRepository customerRepository;
 
-    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository, VendorRepository vendorRepository, CustomerRepository customerRepository) {
         this.categoryRepository = categoryRepository;
+        this.vendorRepository = vendorRepository;
         this.customerRepository = customerRepository;
     }
 
@@ -25,6 +29,7 @@ public class Bootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         loadCategories();
+        loadVendors();
         loadCustomers();
 
     }
@@ -52,13 +57,32 @@ public class Bootstrap implements CommandLineRunner {
         categoryRepository.save(nuts);
         categoryRepository.save(fruits);
 
-        log.info("Data loaded: " + categoryRepository.count() + " preset Categories");
+        log.info("Data loaded in Bootstrap class: " + categoryRepository.count() + " preset categories.");
+
+    }
+
+
+    private void loadVendors() {
+
+        Vendor vendor1 = new Vendor();
+        vendor1.setId(1L);
+        vendor1.setName("Vendor 1");
+
+        Vendor vendor2 = new Vendor();
+        vendor2.setId(2L);
+        vendor2.setName("Vendor 2");
+
+        vendorRepository.save(vendor1);
+        vendorRepository.save(vendor2);
+
+        log.info("Data loaded in Bootstrap class: " + vendorRepository.count() + " preset vendors.");
+
+
 
     }
 
     private void loadCustomers() {
 
-        // given
         Customer customer1 = new Customer();
         customer1.setId(1L);
         customer1.setFirstName("Marina");
@@ -71,7 +95,7 @@ public class Bootstrap implements CommandLineRunner {
         customer2.setLastName("Jarodna");
         customerRepository.save(customer2);
 
-        log.info("Data loaded: " + customerRepository.count() + " customers.");
+        log.info("Data loaded in Bootstrap class: " + customerRepository.count() + " preset customers.");
 
     }
 }

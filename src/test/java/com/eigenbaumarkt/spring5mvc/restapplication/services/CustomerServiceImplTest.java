@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -19,7 +20,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 public class CustomerServiceImplTest {
-
 
     @Mock
     CustomerRepository customerRepository;
@@ -41,7 +41,7 @@ public class CustomerServiceImplTest {
     public void getAllCustomers() throws Exception {
         // given
         Customer customer1 = new Customer();
-        customer1.setId(1l);
+        customer1.setId(1L);
         customer1.setFirstName("Marina");
         customer1.setLastName("Johanniston");
 
@@ -68,11 +68,12 @@ public class CustomerServiceImplTest {
         customer1.setFirstName("Marina");
         customer1.setLastName("Johanniston");
 
-        when(customerRepository.findById(anyLong())).thenReturn(java.util.Optional.ofNullable(customer1));
+        when(customerRepository.findById(anyLong())).thenReturn(Optional.of(customer1));
 
         // when
         CustomerDTO customerDTO = customerService.getCustomerById(1L);
 
+        // then
         assertEquals("Marina", customerDTO.getFirstName());
     }
 

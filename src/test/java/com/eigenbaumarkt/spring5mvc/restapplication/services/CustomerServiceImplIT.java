@@ -6,6 +6,7 @@ import com.eigenbaumarkt.spring5mvc.restapplication.bootstrap.Bootstrap;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CategoryRepository;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
+import com.eigenbaumarkt.spring5mvc.restapplication.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class CustomerServiceImplIT {
 
     @Autowired
+    CategoryRepository categoryRepository;
+    @Autowired
+    VendorRepository vendorRepository;
+    @Autowired
     CustomerRepository customerRepository;
 
-    @Autowired
-    CategoryRepository categoryRepository;
 
     CustomerService customerService;
 
@@ -39,7 +42,7 @@ public class CustomerServiceImplIT {
 
         // - setup data for testing; will not get wired up automatically with @DataJpaTest
         // - the data has to be set up every time, because Junit clears it after every Test-method
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, vendorRepository, customerRepository);
         bootstrap.run(); // load data
 
         customerService = new CustomerServiceImpl(CustomerMapper.INSTANCE, customerRepository);
