@@ -4,16 +4,11 @@ import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryListDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CategoryService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-// via application.properties if to be set on runtime:
-// @RequestMapping("${some.spring.application.url.value}") - which would change our unit tests to need integration testing !!
-// or better "hardcoded" public class constant BASE_URL:
+// Convenience-Annotation since Spring framework 4 instead of
+// @Controller
+@RestController
 @RequestMapping(CategoryController.BASE_URL)
 public class CategoryController {
 
@@ -24,6 +19,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    /*
     @GetMapping
     public ResponseEntity<CategoryListDTO> getAllCategories() {
 
@@ -31,13 +27,22 @@ public class CategoryController {
                 new CategoryListDTO(categoryService.getAllCategories()), HttpStatus.OK
         );
     }
+    */
+
+    // Alternative in @RestControllre annotated class:
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryListDTO getAllCategories() {
+
+        return new CategoryListDTO(categoryService.getAllCategories());
+    }
 
     @GetMapping("/{name}")
-    public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) {
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryDTO getCategoryByName(@PathVariable String name) {
 
-        return new ResponseEntity<CategoryDTO>(
-                categoryService.getCategoryByName(name), HttpStatus.OK
-        );
+        return categoryService.getCategoryByName(name);
     }
 
 }
