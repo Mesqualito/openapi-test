@@ -2,6 +2,7 @@ package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1.CustomerController;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDTO mapCustomerUrl(Customer customer) {
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-        customerDTO.setCustomerUrl("/api/v1/customers/" + customer.getId());
+        customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
         return customerDTO;
     }
 
@@ -81,7 +82,7 @@ public class CustomerServiceImpl implements CustomerService {
             }
 
             CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
-            returnDTO.setCustomerUrl("/api/v1/customers/" + id);
+            returnDTO.setCustomerUrl(getCustomerUrl(id));
             return returnDTO;
 
         }).orElseThrow(RuntimeException::new); // TODO - improve error handling
@@ -98,9 +99,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer savedCustomer = customerRepository.save(customer);
         CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
-        returnDTO.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+        returnDTO.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
 
         return returnDTO;
 
+    }
+
+    private String getCustomerUrl(long id) {
+        return CustomerController.BASE_URL + "/" + id;
     }
 }

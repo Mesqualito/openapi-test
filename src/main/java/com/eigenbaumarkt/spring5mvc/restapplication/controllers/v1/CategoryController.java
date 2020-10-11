@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/v1/categories/")
+// via application.properties if to be set on runtime:
+// @RequestMapping("${some.spring.application.url.value}") - which would change our unit tests to need integration testing !!
+// or better "hardcoded" public class constant BASE_URL:
+@RequestMapping(CategoryController.BASE_URL)
 public class CategoryController {
 
     private final CategoryService categoryService;
+    public static final String BASE_URL = "/api/v1/categories";
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -28,7 +32,7 @@ public class CategoryController {
         );
     }
 
-    @GetMapping("{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) {
 
         return new ResponseEntity<CategoryDTO>(

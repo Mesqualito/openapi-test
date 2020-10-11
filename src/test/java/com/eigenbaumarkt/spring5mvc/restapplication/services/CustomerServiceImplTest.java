@@ -2,6 +2,7 @@ package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1.CustomerController;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,22 +80,24 @@ public class CustomerServiceImplTest {
     public void createNewCustomer() throws Exception {
 
         // given
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Jochen");
+        CustomerDTO customer = new CustomerDTO();
+        customer.setFirstName("Jochen");
+        customer.setLastName("Puckdoll");
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setFirstName(customer.getFirstName());
+        savedCustomer.setLastName(customer.getLastName());
         savedCustomer.setId(1L);
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
 
         // when
-        CustomerDTO savedDTO = customerService.createNewCustomerByDTO(customerDTO);
+        CustomerDTO savedDTO = customerService.createNewCustomerByDTO(customer);
 
         // then
-        assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
-        assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+        assertEquals(customer.getFirstName(), savedDTO.getFirstName());
+        assertEquals(customer.getLastName(), savedDTO.getLastName());
+        assertEquals(CustomerController.BASE_URL + "/1", savedDTO.getCustomerUrl());
     }
 
     @Test
@@ -118,7 +121,7 @@ public class CustomerServiceImplTest {
         // then
         assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
         assertEquals(customerDTO.getLastName(), savedDTO.getLastName());
-        assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "/1", savedDTO.getCustomerUrl());
 
     }
 
