@@ -1,6 +1,8 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CategoryDTO;
+import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.ResourceNotFoundException;
+import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.RestResponseEntityExceptionHandler;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,7 +48,9 @@ class CategoryControllerTest {
         // next line is obsolet during "@InjectMocks" above
         // categoryController = new CategoryController(categoryService);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(categoryController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(categoryController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
+                .build();
 
     }
 
@@ -88,5 +92,15 @@ class CategoryControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(NAME1)));
+    }
+
+    @Test
+    public void testGetCustomExceptionByNameNotFound() throws Exception {
+
+        when(categoryService.getCategoryByName(anyString())).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(CategoryController.BASE_URL + "/foo")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

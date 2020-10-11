@@ -4,6 +4,7 @@ import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1.CustomerController;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
+import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.ResourceNotFoundException;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO getCustomerById(Long id) {
         return customerRepository.findById(id)
                 .map(this::mapCustomerUrl)
-                .orElseThrow(RuntimeException::new); // TODO: improve error handling, return 404-error with custom Exception "Customer not found"
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     private CustomerDTO mapCustomerUrl(Customer customer) {
@@ -85,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
             returnDTO.setCustomerUrl(getCustomerUrl(id));
             return returnDTO;
 
-        }).orElseThrow(RuntimeException::new); // TODO - improve error handling
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
