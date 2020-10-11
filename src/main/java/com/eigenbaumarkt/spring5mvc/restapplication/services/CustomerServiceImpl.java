@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO) {
+    public CustomerDTO patchCustomerByDTO(Long id, CustomerDTO customerDTO) {
         return customerRepository.findById(id).map(customer -> {
 
             // REST-method "PATCH": only do the necessary updates.
@@ -79,7 +79,11 @@ public class CustomerServiceImpl implements CustomerService {
             if(customerDTO.getLastName() != null) {
                 customer.setLastName(customerDTO.getLastName());
             }
-            return customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+
+            CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+            returnDTO.setCustomerUrl("/api/v1/customers/" + id);
+            return returnDTO;
+
         }).orElseThrow(RuntimeException::new); // TODO - improve error handling
     }
 
