@@ -12,10 +12,12 @@ public interface CustomerService {
 
     // CustomerDTO getCustomerByFirstNameAndLastName(String firstName, String lastName);
 
-    CustomerDTO createNewCustomer(CustomerDTO customerDTO);
+    CustomerDTO createNewCustomerByDTO(CustomerDTO customerDTO);
 
     CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO);
 
     CustomerDTO patchCustomerByDTO(Long id, CustomerDTO customerDTO);
+
+    void deleteCustomerById(long id);
 
 }

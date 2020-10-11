@@ -37,7 +37,7 @@ public class CustomerController {
     // and try to create a customerDTO out of that
     public ResponseEntity<CustomerDTO> createNewCustomer(@RequestBody CustomerDTO customerDTO) {
 
-        return new ResponseEntity<CustomerDTO>(customerService.createNewCustomer(customerDTO), HttpStatus.CREATED);
+        return new ResponseEntity<CustomerDTO>(customerService.createNewCustomerByDTO(customerDTO), HttpStatus.CREATED);
 
     }
 
@@ -52,6 +52,15 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> patchCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
 
         return new ResponseEntity<CustomerDTO>(customerService.patchCustomerByDTO(id, customerDTO), HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+
+        customerService.deleteCustomerById(id);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
 
     }
 

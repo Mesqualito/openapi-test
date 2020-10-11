@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
     */
 
     @Override
-    public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+    public CustomerDTO createNewCustomerByDTO(CustomerDTO customerDTO) {
 
         return saveAndReturnDTO(customerMapper.customerDTOToCustomer(customerDTO));
 
@@ -85,6 +85,13 @@ public class CustomerServiceImpl implements CustomerService {
             return returnDTO;
 
         }).orElseThrow(RuntimeException::new); // TODO - improve error handling
+    }
+
+    @Override
+    public void deleteCustomerById(long id) {
+        // TODO: implement error handling if id is not found
+        // alternative: return "Ok" in any case (id found & deleted / id not found)
+        customerRepository.deleteById(id);
     }
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
