@@ -1,8 +1,8 @@
-# Spring Framework 5 REST-Application - APIs with Spring MVC
+# OpenAPI (Swagger) in Spring Framework 5 REST-Application - APIs with Spring MVC
 
-[![CircleCI](https://circleci.com/gh/Mesqualito/Spring5MVCRestApplication.svg?style=svg)](https://circleci.com/gh/Mesqualito/spring5mvcrestapplication)
+[![CircleCI](https://circleci.com/gh/Mesqualito/openapi-test.svg?style=svg)](https://circleci.com/gh/Mesqualito/openapi-test)
 
-[![codecov](https://codecov.io/gh/Mesqualito/spring5-mysql-recipe-app/branch/master/graph/badge.svg)](https://codecov.io/gh/Mesqualito/spring5mvcrestapplication)
+[![codecov](https://codecov.io/gh/Mesqualito/openapi-test/branch/master/graph/badge.svg)](https://codecov.io/gh/Mesqualito/openapi-test)
 
 This repository is for an example application built in John Thompsons Spring Framework 5 - Beginner to Guru
 
