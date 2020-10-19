@@ -3,12 +3,16 @@ package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerListDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CustomerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+// description Param deprecated; see e.g.: https://stackoverflow.com/questions/38074936/api-annotations-description-is-deprecated
+@Api(description = "This is the Customer Controller")
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
 
@@ -20,11 +24,11 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<CustomerListDTO> getAllCustomers() {
+    @ApiOperation(value = "This will get a list of customers.", notes = "These are some notes about the API that we can customize.")
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerListDTO getAllCustomers() {
 
-        return new ResponseEntity<CustomerListDTO>(
-                new CustomerListDTO(customerService.getAllCustomers()), HttpStatus.OK
-        );
+        return new CustomerListDTO(customerService.getAllCustomers());
     }
 
     @GetMapping("/{id}")
