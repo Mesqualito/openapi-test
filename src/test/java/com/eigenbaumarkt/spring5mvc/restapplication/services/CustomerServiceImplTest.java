@@ -53,10 +53,10 @@ public class CustomerServiceImplTest {
         when(customerRepository.findAll()).thenReturn(Arrays.asList(customer1, customer2));
 
         // when
-        List<CustomerDTO> customerDTOS = customerService.getAllCustomers();
+        List<CustomerDTO> customerDTOs = customerService.getAllCustomers();
 
         // then
-        assertEquals(2, customerDTOS.size());
+        assertEquals(2, customerDTOs.size());
 
     }
 

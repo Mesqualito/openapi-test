@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -58,7 +59,17 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         customer2.setLastName("Strullwald");
         customer2.setCustomerUrl(CustomerController.BASE_URL + "/2");
 
-        when(customerService.getAllCustomers()).thenReturn(Arrays.asList(customer1, customer2));
+        /* not working: Test not in Spring MVC context
+        CustomerListDTO customerListDTO = new CustomerListDTO();
+        customerListDTO.setCustomers(Arrays.asList(customer1, customer2));
+
+        when(customerService.getAllCustomers()).thenReturn(customerListDTO);
+
+        */
+
+        List<CustomerDTO> customerDTOs = Arrays.asList(customer1, customer2);
+
+        when(customerService.getAllCustomers()).thenReturn(customerDTOs);
 
         mockMvc.perform(get(CustomerController.BASE_URL + "/")
                 .contentType(MediaType.APPLICATION_JSON))

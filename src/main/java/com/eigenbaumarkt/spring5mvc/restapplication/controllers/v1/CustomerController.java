@@ -7,10 +7,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 // description Param deprecated; see e.g.: https://stackoverflow.com/questions/38074936/api-annotations-description-is-deprecated
 @Api(description = "This is the Customer Controller")
 @RequestMapping(CustomerController.BASE_URL)
@@ -28,7 +27,11 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDTO getAllCustomers() {
 
-        return new CustomerListDTO(customerService.getAllCustomers());
+        // Unterschied CustomerListDTO und List<CustomerDTO> zwischen | Controller <=> Service |
+        // nicht zwischen | Service <=> Repository | (auch in den Tests!!)
+        CustomerListDTO customerListDTO = new CustomerListDTO();
+        customerListDTO.setCustomerDTOs(customerService.getAllCustomers());
+        return customerListDTO;
     }
 
     @GetMapping("/{id}")
