@@ -55,4 +55,10 @@ public class SwaggerConfig {
                         new ArrayList<>());
     }
 
+    // also: https://editor.swagger.io/ is an editor - like apiary.io - to follow the API-first-pattern.
+    // HINT:
+    // - localhost:8080/api/v2/api-docs can be copied into https://editor.swagger.io to test and expand the own custom API
+    // - platform can also be examined with command line, e.g.: "curl -X GET "https://petstore.swagger.io/v2/pet/findByStatus?status=pending" -H  "accept: application/json" " -
+    //   we see, they are running an example of Petstore...
+
 }
