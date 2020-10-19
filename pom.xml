@@ -17,7 +17,6 @@
     <properties>
         <java.version>14</java.version>
         <org.mapstruct.version>1.4.0.Final</org.mapstruct.version>
-        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
     </properties>
 
     <dependencies>
@@ -62,15 +61,27 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+
+        <!-- in discussion.
+        See: https://stackoverflow.com/questions/63194021/the-method-apisjava-util-function-predicatespringfox-documentation-requesthand
+        -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger2.version}</version>
+            <version>2.9.2</version>
         </dependency>
+        <!-- replacement, see: https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api -->
+        <!--
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox-swagger2.version}</version>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
 

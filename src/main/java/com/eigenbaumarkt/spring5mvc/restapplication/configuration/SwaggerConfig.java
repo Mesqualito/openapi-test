@@ -13,6 +13,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 
 // enables OpenApi in project
+// @EnableSwagger2
+// replaced, see: https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+// @EnableSwagger2WebMvc
+// replaced and auto activated with @EnableWebMVC, see: https://github.com/springfox/springfox (19.10.2020)
+// @EnableWebMvc -- not working, switching back :-(
+
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
@@ -24,6 +30,7 @@ public class SwaggerConfig {
         // effects how the JSON-Output in "/v2/api-docs" is formulated
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
+                // .apis(RequestHandlerSelectors.basePackage("com.eigenbaumarkt.spring5mvc.restapplication.controllers"))
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
