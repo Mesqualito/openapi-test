@@ -83,6 +83,13 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <!-- Spring MVC Content Negotiation ("Inhaltsformat-Aushandlung") - ACCEPT: application/xml -->
+        <!-- see: https://docs.spring.io/spring-boot/docs/2.4.x/reference/htmlsingle/#howto-write-an-xml-rest-service -->
+        <!-- the default 'ACCEPT: application/json' is still enabled in the REST API Endpoints returns -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
