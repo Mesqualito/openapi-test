@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>rest-model</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rest-model</name>
+    <description>Spring 5 MVC REST Application (or: Building an API with Spring5 MVC)</description>
+
+    <parent>
+        <groupId>com.eigenbaumarkt.spring5mvc</groupId>
+        <artifactId>restapi</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+</project>
