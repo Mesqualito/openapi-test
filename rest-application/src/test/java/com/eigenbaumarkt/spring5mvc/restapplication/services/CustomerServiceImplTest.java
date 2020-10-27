@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper;
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1.CustomerController;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CustomerRepository;
@@ -74,7 +74,7 @@ public class CustomerServiceImplTest {
         CustomerDTO customerDTO = customerService.getCustomerById(1L);
 
         // then
-        assertEquals("Marina", customerDTO.getFirstName());
+        assertEquals("Marina", customerDTO.getFirstname());
     }
 
     @Test
@@ -82,12 +82,12 @@ public class CustomerServiceImplTest {
 
         // given
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName("Jochen");
-        customer.setLastName("Puckdoll");
+        customer.setFirstname("Jochen");
+        customer.setLastname("Puckdoll");
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customer.getFirstName());
-        savedCustomer.setLastName(customer.getLastName());
+        savedCustomer.setFirstName(customer.getFirstname());
+        savedCustomer.setLastName(customer.getLastname());
         savedCustomer.setId(1L);
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
@@ -96,8 +96,8 @@ public class CustomerServiceImplTest {
         CustomerDTO savedDTO = customerService.createNewCustomerByDTO(customer);
 
         // then
-        assertEquals(customer.getFirstName(), savedDTO.getFirstName());
-        assertEquals(customer.getLastName(), savedDTO.getLastName());
+        assertEquals(customer.getFirstname(), savedDTO.getFirstname());
+        assertEquals(customer.getLastname(), savedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + "/1", savedDTO.getCustomerUrl());
     }
 
@@ -106,13 +106,13 @@ public class CustomerServiceImplTest {
 
         // given
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Marina");
-        customerDTO.setLastName("Johanniston");
+        customerDTO.setFirstname("Marina");
+        customerDTO.setLastname("Johanniston");
 
         Customer savedCustomer = new Customer();
         savedCustomer.setId(1L);
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setFirstName(customerDTO.getFirstname());
+        savedCustomer.setLastName(customerDTO.getLastname());
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
 
@@ -120,8 +120,8 @@ public class CustomerServiceImplTest {
         CustomerDTO savedDTO = customerService.saveCustomerByDTO(savedCustomer.getId(), customerDTO);
 
         // then
-        assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
-        assertEquals(customerDTO.getLastName(), savedDTO.getLastName());
+        assertEquals(customerDTO.getFirstname(), savedDTO.getFirstname());
+        assertEquals(customerDTO.getLastname(), savedDTO.getLastname());
         assertEquals(CustomerController.BASE_URL + "/1", savedDTO.getCustomerUrl());
 
     }

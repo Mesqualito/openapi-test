@@ -1,6 +1,6 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper;
 
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +24,8 @@ public class CustomerMapperTest {
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         // then
-        assertEquals(FIRSTNAME, customerDTO.getFirstName());
-        assertEquals(LASTNAME, customerDTO.getLastName());
+        assertEquals(FIRSTNAME, customerDTO.getFirstname());
+        assertEquals(LASTNAME, customerDTO.getLastname());
 
     }
 

@@ -1,6 +1,6 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.ResourceNotFoundException;
 import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.RestResponseEntityExceptionHandler;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CustomerService;
@@ -50,13 +50,13 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         // given
         CustomerDTO customer1 = new CustomerDTO();
-        customer1.setFirstName("Marina");
-        customer1.setLastName("Johannison");
+        customer1.setFirstname("Marina");
+        customer1.setLastname("Johannison");
         customer1.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
         CustomerDTO customer2 = new CustomerDTO();
-        customer2.setFirstName("Jochen");
-        customer2.setLastName("Strullwald");
+        customer2.setFirstname("Jochen");
+        customer2.setLastname("Strullwald");
         customer2.setCustomerUrl(CustomerController.BASE_URL + "/2");
 
         /* not working: Test not in Spring MVC context
@@ -83,8 +83,8 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         //given
         CustomerDTO customer1 = new CustomerDTO();
-        customer1.setFirstName("Marina");
-        customer1.setLastName("Johannison");
+        customer1.setFirstname("Marina");
+        customer1.setLastname("Johannison");
         customer1.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
         when(customerService.getCustomerById(anyLong())).thenReturn(customer1);
@@ -101,12 +101,12 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
     public void createNewCustomer() throws Exception {
         // given
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName("Molinari");
-        customer.setLastName("Muselmännichen");
+        customer.setFirstname("Molinari");
+        customer.setLastname("Muselmännichen");
 
         CustomerDTO returnDTO = new CustomerDTO();
-        returnDTO.setFirstName(customer.getFirstName());
-        returnDTO.setLastName(customer.getLastName());
+        returnDTO.setFirstname(customer.getFirstname());
+        returnDTO.setLastname(customer.getLastname());
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
         when(customerService.createNewCustomerByDTO(customer)).thenReturn(returnDTO);
@@ -125,12 +125,12 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
     public void testUpdateCustomer() throws Exception {
         // given
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName("Marina");
-        customer.setLastName("Johanniston");
+        customer.setFirstname("Marina");
+        customer.setLastname("Johanniston");
 
         CustomerDTO returnDTO = new CustomerDTO();
-        returnDTO.setFirstName(customer.getFirstName());
-        returnDTO.setLastName(customer.getLastName());
+        returnDTO.setFirstname(customer.getFirstname());
+        returnDTO.setLastname(customer.getLastname());
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
         when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
@@ -151,11 +151,11 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         // given
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName("Marina");
+        customerDTO.setFirstname("Marina");
 
         CustomerDTO returnDTO = new CustomerDTO();
-        returnDTO.setFirstName(customerDTO.getFirstName());
-        returnDTO.setLastName("Mobilina");
+        returnDTO.setFirstname(customerDTO.getFirstname());
+        returnDTO.setLastname("Mobilina");
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
         when(customerService.patchCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);

@@ -23,6 +23,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # Install dependencies for CircleCI (e.g. JARs from submodule rest-model)
+      # but skips tests :-(
+      - run: mvn install -Dskiptests
       - run: mvn dependency:go-offline
 
       - save_cache:

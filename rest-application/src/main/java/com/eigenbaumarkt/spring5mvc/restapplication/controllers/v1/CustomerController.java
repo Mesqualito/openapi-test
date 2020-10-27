@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1;
 
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerListDTO;
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
+import com.eigenbaumarkt.spring5mvc.model.CustomerListDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.services.CustomerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +30,7 @@ public class CustomerController {
         // Unterschied CustomerListDTO und List<CustomerDTO> zwischen | Controller <=> Service |
         // nicht zwischen | Service <=> Repository | (auch in den Tests!!)
         CustomerListDTO customerListDTO = new CustomerListDTO();
-        customerListDTO.setCustomerDTOs(customerService.getAllCustomers());
+        customerListDTO.getCustomers().addAll(customerService.getAllCustomers());
         return customerListDTO;
     }
 

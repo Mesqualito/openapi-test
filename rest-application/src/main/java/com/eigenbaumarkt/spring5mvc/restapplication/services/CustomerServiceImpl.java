@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper;
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.controllers.v1.CustomerController;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.exceptions.ResourceNotFoundException;
@@ -67,11 +67,11 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO patchCustomerByDTO(Long id, CustomerDTO customerDTO) {
         return customerRepository.findById(id).map(customer -> {
 
-            if(customerDTO.getFirstName() != null) {
-                customer.setFirstName(customerDTO.getFirstName());
+            if(customerDTO.getFirstname() != null) {
+                customer.setFirstName(customerDTO.getFirstname());
             }
-            if(customerDTO.getLastName() != null) {
-                customer.setLastName(customerDTO.getLastName());
+            if(customerDTO.getLastname() != null) {
+                customer.setLastName(customerDTO.getLastname());
             }
 
             return saveAndReturnDTO(customer);

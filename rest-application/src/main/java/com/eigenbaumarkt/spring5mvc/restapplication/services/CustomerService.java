@@ -1,6 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
+
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 
 import java.util.List;
 

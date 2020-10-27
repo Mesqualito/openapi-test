@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.spring5mvc.restapplication.services;
 
+import com.eigenbaumarkt.spring5mvc.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.mapper.CustomerMapper;
-import com.eigenbaumarkt.spring5mvc.restapplication.api.v1.model.CustomerDTO;
 import com.eigenbaumarkt.spring5mvc.restapplication.bootstrap.Bootstrap;
 import com.eigenbaumarkt.spring5mvc.restapplication.domain.Customer;
 import com.eigenbaumarkt.spring5mvc.restapplication.repositories.CategoryRepository;
@@ -60,7 +60,7 @@ public class CustomerServiceImplIT {
         String originalLastName = originalCustomer.getLastName();
 
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName(updatedName);
+        customerDTO.setFirstname(updatedName);
 
         customerService.patchCustomerByDTO(id, customerDTO);
 
@@ -85,7 +85,7 @@ public class CustomerServiceImplIT {
         String originalLastName = originalCustomer.getLastName();
 
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setLastName(updatedName);
+        customerDTO.setLastname(updatedName);
 
         customerService.patchCustomerByDTO(id, customerDTO);
 
