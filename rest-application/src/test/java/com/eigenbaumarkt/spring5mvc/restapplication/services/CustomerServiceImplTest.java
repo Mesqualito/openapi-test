@@ -42,13 +42,13 @@ public class CustomerServiceImplTest {
         // given
         Customer customer1 = new Customer();
         customer1.setId(1L);
-        customer1.setFirstName("Marina");
-        customer1.setLastName("Johanniston");
+        customer1.setFirstname("Marina");
+        customer1.setLastname("Johanniston");
 
         Customer customer2 = new Customer();
         customer2.setId(2l);
-        customer2.setFirstName("Jochen");
-        customer2.setLastName("Strullwald");
+        customer2.setFirstname("Jochen");
+        customer2.setLastname("Strullwald");
 
         when(customerRepository.findAll()).thenReturn(Arrays.asList(customer1, customer2));
 
@@ -65,8 +65,8 @@ public class CustomerServiceImplTest {
         // given
         Customer customer1 = new Customer();
         customer1.setId(1L);
-        customer1.setFirstName("Marina");
-        customer1.setLastName("Johanniston");
+        customer1.setFirstname("Marina");
+        customer1.setLastname("Johanniston");
 
         when(customerRepository.findById(anyLong())).thenReturn(Optional.of(customer1));
 
@@ -86,8 +86,8 @@ public class CustomerServiceImplTest {
         customer.setLastname("Puckdoll");
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customer.getFirstname());
-        savedCustomer.setLastName(customer.getLastname());
+        savedCustomer.setFirstname(customer.getFirstname());
+        savedCustomer.setLastname(customer.getLastname());
         savedCustomer.setId(1L);
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
@@ -111,8 +111,8 @@ public class CustomerServiceImplTest {
 
         Customer savedCustomer = new Customer();
         savedCustomer.setId(1L);
-        savedCustomer.setFirstName(customerDTO.getFirstname());
-        savedCustomer.setLastName(customerDTO.getLastname());
+        savedCustomer.setFirstname(customerDTO.getFirstname());
+        savedCustomer.setLastname(customerDTO.getLastname());
 
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
 

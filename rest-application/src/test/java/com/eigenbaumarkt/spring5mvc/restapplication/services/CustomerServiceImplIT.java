@@ -49,15 +49,15 @@ public class CustomerServiceImplIT {
     }
 
     @Test
-    public void patchCustomerUpdateFirstName() throws Exception {
+    public void patchCustomerUpdateFirstname() throws Exception {
         String updatedName = "UpdatedName";
         long id = getCustomerIdValue();
 
         Customer originalCustomer = customerRepository.getOne(id);
         assertNotNull(originalCustomer);
         // save original first name
-        String originalFirstName = originalCustomer.getFirstName();
-        String originalLastName = originalCustomer.getLastName();
+        String originalFirstname = originalCustomer.getFirstname();
+        String originalLastname = originalCustomer.getLastname();
 
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstname(updatedName);
@@ -67,13 +67,13 @@ public class CustomerServiceImplIT {
         Customer updatedCustomer = customerRepository.findById(id).get();
 
         assertNotNull(updatedCustomer);
-        assertEquals(updatedName, updatedCustomer.getFirstName());
-        assertThat(originalFirstName, not(equalTo(updatedCustomer.getFirstName())));
-        assertThat(originalLastName, equalTo(updatedCustomer.getLastName()));
+        assertEquals(updatedName, updatedCustomer.getFirstname());
+        assertThat(originalFirstname, not(equalTo(updatedCustomer.getFirstname())));
+        assertThat(originalLastname, equalTo(updatedCustomer.getLastname()));
     }
 
     @Test
-    public void patchCustomerUpdateLastName() throws Exception {
+    public void patchCustomerUpdateLastname() throws Exception {
         String updatedName = "UpdatedName";
         long id = getCustomerIdValue();
 
@@ -81,8 +81,8 @@ public class CustomerServiceImplIT {
         assertNotNull(originalCustomer);
 
         // save original first/last name
-        String originalFirstName = originalCustomer.getFirstName();
-        String originalLastName = originalCustomer.getLastName();
+        String originalFirstname = originalCustomer.getFirstname();
+        String originalLastname = originalCustomer.getLastname();
 
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setLastname(updatedName);
@@ -92,9 +92,9 @@ public class CustomerServiceImplIT {
         Customer updatedCustomer = customerRepository.findById(id).get();
 
         assertNotNull(updatedCustomer);
-        assertEquals(updatedName, updatedCustomer.getLastName());
-        assertThat(originalFirstName, equalTo(updatedCustomer.getFirstName()));
-        assertThat(originalLastName, not(equalTo(updatedCustomer.getLastName())));
+        assertEquals(updatedName, updatedCustomer.getLastname());
+        assertThat(originalFirstname, equalTo(updatedCustomer.getFirstname()));
+        assertThat(originalLastname, not(equalTo(updatedCustomer.getLastname())));
     }
 
     // while the data is set up new for every Test-method, the database will count up the id's in the background

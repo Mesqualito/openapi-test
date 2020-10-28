@@ -40,8 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     /*
     @Override
-    public CustomerDTO getCustomerByFirstNameAndLastName(String firstName, String lastName) {
-        return customerRepository.findByFirstNameAndLastName(firstName, lastName)
+    public CustomerDTO getCustomerByFirstnameAndLastname(String firstname, String lastname) {
+        return customerRepository.findByFirstnameAndLastname(firstname, lastname)
                 .map(
         );
     }
@@ -68,10 +68,10 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id).map(customer -> {
 
             if(customerDTO.getFirstname() != null) {
-                customer.setFirstName(customerDTO.getFirstname());
+                customer.setFirstname(customerDTO.getFirstname());
             }
             if(customerDTO.getLastname() != null) {
-                customer.setLastName(customerDTO.getLastname());
+                customer.setLastname(customerDTO.getLastname());
             }
 
             return saveAndReturnDTO(customer);

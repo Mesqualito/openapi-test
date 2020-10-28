@@ -17,8 +17,8 @@ public class CustomerMapperTest {
 
         // given
         Customer customer = new Customer();
-        customer.setFirstName(FIRSTNAME);
-        customer.setLastName(LASTNAME);
+        customer.setFirstname(FIRSTNAME);
+        customer.setLastname(LASTNAME);
 
         // when
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);

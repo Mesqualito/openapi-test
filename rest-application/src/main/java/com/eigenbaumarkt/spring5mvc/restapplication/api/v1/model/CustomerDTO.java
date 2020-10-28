@@ -14,11 +14,11 @@ public class CustomerDTO {
     // explain it better & make it a required value in the Swagger UI (optional!):
     @ApiModelProperty(value = "This is the first name of a customer", required = true)
     @JsonProperty("firstname")
-    private String firstName;
+    private String firstname;
 
     @ApiModelProperty(required = true)
     @JsonProperty("lastname")
-    private String lastName;
+    private String lastname;
 
     @JsonProperty("customer_url")
     private String customerUrl;
