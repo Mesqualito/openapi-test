@@ -9,8 +9,7 @@
     </xs:complexType>
     <xs:complexType name="CustomerListDTO">
         <xs:sequence>
-            <xs:element type="CustomerDTO" name="Customers" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element type="CustomerDTO" name="customers" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
-

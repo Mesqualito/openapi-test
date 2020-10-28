@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rest-model</artifactId>
     <packaging>jar</packaging>
 
-    <name>rest-model</name>
-    <description>Spring 5 MVC REST Application (or: Building an API with Spring5 MVC)</description>
+    <name>spring5-mvc-model</name>
+    <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.eigenbaumarkt.spring5mvc</groupId>
-        <artifactId>restapi</artifactId>
+        <groupId>guru.springframework</groupId>
+        <artifactId>spring5-mvc-rest-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <dependencies>
-        <dependency>
-            <!-- from https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.5.0/project-summary.html -->
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jaxb2-maven-plugin</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-    </dependencies>
+    <!--<dependencies>-->
 
+    <!--</dependencies>-->
     <build>
         <plugins>
-            <!-- from: https://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.5.0/example_xjc_basic.html -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <!-- publishing date: 2019-07-09 -->
-                <version>2.5.0</version>
+                <version>2.3.1</version>
                 <executions>
                     <execution>
                         <id>xjc</id>
@@ -42,7 +34,7 @@
                 </executions>
                 <configuration>
                     <!-- The package of your generated sources -->
-                    <packageName>com.eigenbaumarkt.spring5mvc.model</packageName>
+                    <packageName>guru.springframework.model</packageName>
                     <sources>
                         <source>src/main/resources/xsd</source>
                     </sources>
@@ -50,5 +42,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
