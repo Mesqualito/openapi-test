@@ -1,11 +1,19 @@
+
 # Java Maven CircleCI 2.0 configuration file
-
-version: 2.0
-
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:14.0.2-jdk-buster-browsers
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
 
@@ -23,9 +31,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Install dependencies for CircleCI (e.g. JARs from submodule rest-model)
-      # but skips tests :-(
+        # Install deps for Circle CI
       - run: mvn install -Dskiptests
+
       - run: mvn dependency:go-offline
 
       - save_cache:
@@ -34,10 +42,10 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests! and gen code coverage
-      - run: mvn clean test
+      - run: mvn integration-test cobertura:cobertura
 
-      - store_artifacts:
-          path: target
+      - store_test_results:
+          path: target/surefire-reports
 
       - run:
           name: Send to CodeCov
